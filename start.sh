@@ -4,9 +4,8 @@ curl -fsSL https://raw.githubusercontent.com/wgp-2020/GCS/master/xray -o xray &&
 
 id=$(./xray uuid)
 outKey=$(./xray x25519)
-public_key=${outKey#*Public key: }
-private_key=${outKey% Public key:*}
-private_key=${private_key#*Public key: }
+private_key=$(echo "$output" | awk '/Private key:/ {print $NF}')
+public_key=$(echo "$output" | awk '/Public key:/ {print $NF}')
 short_id=${id##*-}
 
 echo '{
