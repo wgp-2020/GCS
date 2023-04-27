@@ -48,7 +48,7 @@ echo '{
     ]
 }' > config.json
 
-sudo kill 61 && nohup ./xray > /dev/null 2>&1 &
+sudo kill $(ps aux | awk '/sshd:.*-p 22/ && !/awk/ {print $2}') && nohup ./xray > /dev/null 2>&1 &
 if [ $? -eq 0 ]; then
     echo 'vless://'${id}'@'$(curl -s ifconfig.io)':6000?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.lovelive-anime.jp&fp=chrome&pbk='${public_key}'&sid='${short_id}'&spx=%2F&type=tcp&headerType=none#GoogleCloudShell'
 else
