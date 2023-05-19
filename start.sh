@@ -53,7 +53,7 @@ if [ -n "$pid" ]; then
   sudo kill $pid
 fi
 
-nohup ./xray > /dev/null 2>&1 &
+sudo nohup ./xray > /dev/null 2>&1 &
 
 if [ $? -eq 0 ]; then
     echo 'vless://'${id}'@'$(curl -s ifconfig.io)':6000?encryption=none&flow=xtls-rprx-vision&security=reality&sni=www.lovelive-anime.jp&fp=chrome&pbk='${public_key}'&sid='${short_id}'&spx=%2F&type=tcp&headerType=none#GCS'
